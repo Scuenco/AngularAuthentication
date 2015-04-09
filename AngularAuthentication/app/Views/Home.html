@@ -1,0 +1,25 @@
+﻿<div ng-app="app"><!--added this-->
+    <div ng-controller="HomeController">
+        <br />
+        <div ng-show="!status.isLoggedIn">
+            <input placeholder="Username..." class="form-control" ng-model="user.username" />
+            <input placeholder="Password..." class="form-control" ng-model="user.password" />
+            <button ng-click="login()" class="btn btn-default">Submit</button>
+        </div>
+        <div ng-show="status.isLoggedIn">
+            <button ng-click="logout()" class="btn btn-default">Logout</button>
+            <div class="well" ng-repeat="t in tasks">
+                {{t.Description}}<br />
+                <button class="btn btn-danger" ng-click="deleteTask(t.ToDoId)">Delete</button>
+                <button class="btn btn-default" ng-click="isEditing = true">Edit</button>
+
+                <!--Show when editing-->
+                <div ng-show="isEditing" class="well" ng-cloak>
+                    Description: <input ng-model="editTask.Description" placeholder="Description" class="form-control" />
+                    User: <input ng-model="editTask.User" placeholder="User" class="form-control" />
+                    <button class="btn btn-default" ng-click="editTask(t.ToDoId)">Submit</button><button class="btn btn-default" ng-click="isEditing = false">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
